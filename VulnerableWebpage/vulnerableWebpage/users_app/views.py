@@ -13,7 +13,8 @@ def login(request):
 def is_admin_user_agent(request):
 
     user_agent = request.headers.get('User-Agent', '')  # Default to empty string if missing
-    if 'Admin' in user_agent:
+    # Check for Safari browser (but exclude Chrome, which also includes Safari in its UA string)
+    if 'Safari' in user_agent and 'Chrome' not in user_agent:
         print("True")
         return True
 
